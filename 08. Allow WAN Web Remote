@@ -1,3 +1,5 @@
+After configure this, please check the ONU WAN IP Address and access in Via Web Browser
+
 Configure PON-ONU-MNG
 ##################################################################
 configure terminal
