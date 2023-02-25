@@ -1,0 +1,38 @@
+Configure VLAN thats use in service like PPPoE, CCTV, IPTV
+##################################################################
+configure terminal
+vlan 2541
+  name MGNT
+!        
+vlan 2542
+  name PPPoE
+!        
+vlan 2543
+  name IPTV
+!        
+vlan 2544
+  name PABX
+!       
+vlan 2546
+  name CCTV
+!        
+vlan 2547
+  name WLAN
+!
+##################################################################
+
+TAG VLAN to Uplink Port
+##################################################################
+configure terminal
+interface gei_1/4/3 (choose other interface if different)
+  no shutdown
+  hybrid-attribute copper
+  switchport mode hybrid
+  switchport vlan 2541-2547 tag
+  igmp version v2
+  igmp fast-leave enable
+  port-protect disable
+  uplink-isolate disable
+!
+end
+##################################################################
