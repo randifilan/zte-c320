@@ -2,7 +2,9 @@ Goals :
 -   With this step, you configure the ONU to connect using PPPoE, so user can connect to internet.
 -   Use port1 in ONT to pass VLAN traffik with the spesific VLAN ID
 -   i use VLAN 2546 for CCTV
+-   i use VLAN 2542 for PPPoE
 -   you can use for other service Like IPTV, PABX and other service with VLAN.
+-   Configure ONT ZTEGC11F4854
 
 
 Show UNCFG ONU
@@ -111,14 +113,14 @@ Admin status   : unlock
 
 Check if Device connected to ONT Port get IP from VLAN 2546
 ##################################################################
-- in this case, i connect New MikroTik ether1 to ONT Port1, so let me check..
+- in this case, i connect New MikroTik ether1 to ONT Port1, lets check..
 
 # Check in MikroTik
 ip dhcp-client print where interface=ether1
 Flags: X - disabled, I - invalid, D - dynamic 
- #   INTERFACE    USE-PEER-DNS ADD-DEFAULT-ROUTE STATUS        ADDRESS           
- 0   ether1       no           no                bound         10.25.46.232/24 
- 
+ #   INTERFACE    USE-PEER-DNS ADD-DEFAULT-ROUTE STATUS     ADDRESS           
+ 0   ether1       no           no                bound      10.25.46.232/24 
+  
 - my New MikroTik Get IP Address from VLAN 2546 (Success)
 
 ##################################################################
