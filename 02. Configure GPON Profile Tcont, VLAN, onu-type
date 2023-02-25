@@ -1,4 +1,4 @@
-Configure GPON Profile Tcont
+GPON Profile Tcont      #use tcont name as you need
 ##################################################################
 configure t
 gpon     
@@ -11,7 +11,7 @@ gpon
 !   
 ##################################################################
 
-Configure GPON Profile VLAN
+GPON Profile VLAN       #use profile name & vlan as you need
 ##################################################################
 configure t
 gpon     
@@ -19,7 +19,7 @@ gpon
   #configure profile vlan as much as you need.
 ##################################################################
 
-Configure GPON Profile ONU-TYPE
+GPON Profile ONU-TYPE   #use ONU-TYPE name as you need
 ##################################################################
 configure t
 pon      
