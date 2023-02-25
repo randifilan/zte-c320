@@ -265,3 +265,28 @@ configure terminal
 %Info 20272: Enter configuration commands, one per line. End with CTRL/Z.
 pon-onu-mng gpon-onu_1/2/2:17
 restore factory
+
+17. Show VLAN and summary of Configure VLAN in OLT
+
+show vlan summary 
+All created vlan num: 8   
+Details are following:
+    1,2541-2547 
+
+
+show vlan 2542
+vlanid          :2542
+name            :GPON
+description     :N/A
+multicast-packet:flood-unknown
+tpid            :0x8100
+vlan connect    :disable
+port(untagged):
+
+port(tagged):
+  gpon-onu_1/2/1:1-8:1
+  gpon-onu_1/2/1:9-13:1,2:1-3:1
+  gpon-onu_1/2/2:4-8,10-11,13:1
+  gpon-onu_1/2/2:16-17:1,3:1-6:1
+  gpon-onu_1/2/3:7-12:1
+  gei_1/4/3  
