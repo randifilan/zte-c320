@@ -1,3 +1,5 @@
+Goals : With this step, you configure the ONU to connect using PPPoE, so user can connect to internet.
+
 Show UNCFG ONU
 ##################################################################
 show gpon onu uncfg
