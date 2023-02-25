@@ -1,2 +1,3 @@
-# zte-c320
-Configuration OLT ZTE C320
+OLT ZTE C320 Configuration
+
+by : Randy Filan
