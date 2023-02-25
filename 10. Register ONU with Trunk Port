@@ -20,6 +20,4 @@ pon-onu-mng gpon-onu_1/2/2:17
   service CCTV gemport 1 vlan 2546
   vlan port eth_0/1 mode hybrid def-vlan 2543
   vlan port eth_0/2 mode hybrid def-vlan 2544
-  vlan port eth_0/1 vlan 2544-2546
-  vlan port eth_0/2 vlan 2543,2545-2546
 ##################################################################
