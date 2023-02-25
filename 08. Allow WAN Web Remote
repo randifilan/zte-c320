@@ -1,0 +1,7 @@
+Configure PON-ONU-MNG
+##################################################################
+configure terminal
+pon-onu-mng gpon-onu_1/2/2:17
+security-mgmt 212 state enable mode forward protocol web    #Allow Access Port 80 ONT Via WAN
+exit
+##################################################################
