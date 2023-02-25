@@ -1,0 +1,39 @@
+ONU-Profile GPON Line
+##################################################################
+onu-profile gpon line TriplePlay
+  tcont 1 name INTERNET profile dba_inet
+  tcont 2 name IPTV profile dba_iptv
+  tcont 3 name VOIP profile dba_voip
+  tcont 5 name CCTV profile dba_cctv
+  tcont 6 name WLAN profile dba_wlan
+  gemport 1 name INTERNET tcont 1
+  gemport 2 name IPTV tcont 2
+  gemport 3 name VOIP tcont 3
+  gemport 5 name CCTV tcont 5
+  gemport 6 name WLAN tcont 6
+!
+##################################################################
+
+ONU-Profile GPON Remote
+##################################################################
+onu-profile gpon remote Tconfig-default
+  service INTERNET gemport 1 vlan 2542
+  service IPTV gemport 2 vlan 2543
+  service VOIP gemport 3 vlan 2544
+  service CCTV gemport 5 vlan 2546
+  service WLAN gemport 6 vlan 2547
+  interface eth eth_0/1 mtu 8192
+  interface eth eth_0/2 mtu 8192
+  interface eth eth_0/3 mtu 8192
+  interface eth eth_0/4 mtu 8192
+  vlan port eth_0/1 mode tag vlan 2545
+  vlan port eth_0/2 mode tag vlan 2543
+  vlan port eth_0/3 mode tag vlan 2544
+  vlan port eth_0/4 mode tag vlan 2543
+  vlan port wifi_0/1 mode tag vlan 2547
+  dhcp-ip ethuni eth_0/1 from-internet
+  dhcp-ip ethuni eth_0/2 from-internet
+  dhcp-ip ethuni eth_0/3 from-internet
+  dhcp-ip ethuni eth_0/4 from-internet
+!
+##################################################################
