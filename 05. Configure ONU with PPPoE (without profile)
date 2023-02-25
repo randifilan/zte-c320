@@ -1,0 +1,50 @@
+Show UNCFG ONU
+##################################################################
+show gpon onu uncfg
+OnuIndex                 Sn                  State
+---------------------------------------------------------------------
+gpon-onu_1/2/2:1         ZTEGC0EF4854        unknown
+##################################################################
+
+Register ONU
+##################################################################
+configure terminal
+interface gpon-olt_1/2/2
+onu 17 type F670L sn ZTEGC0EF4854     # .[Successful]
+exit
+##################################################################
+
+Configure GPON-ONU, tconf, gemport, VLAN
+##################################################################
+configure terminal
+interface gpon-onu_1/2/2:17
+tcont 1 name PPPoE profile dba_inet
+gemport 1 name INTERNET tcont 1
+service-port 1 vport 1 user-vlan 2542 vlan 2542   #2542 is PPPoE VLAN
+exit
+##################################################################
+
+Configure PON-ONU-MNG
+##################################################################
+configure terminal
+pon-onu-mng gpon-onu_1/2/2:17
+service PPPoE gemport 1 vlan 2542   #PPPoE VLAN, check section #03
+wan-ip 1 mode pppoe username testingpppoe password pppoetesting vlan-profile PPPoE host 1 #PPPoE is Profile VLAN, check section #02
+wan-ip 1 ping-response enable traceroute-response enable
+security-mgmt 212 state enable mode forward protocol web 
+exit
+##################################################################
+
+Add PPPoE username add Password in Router (MikroTik)
+##################################################################
+export 
+# feb/25/2023 10:53:59 by RouterOS 6.48.6
+# software id = XXXX-XXXX
+#
+# model = CCR1036-12G-4S
+# serial number = XXXXXXXXXX
+/ppp secret
+add name=testingpppoe password=pppoetesting profile=GPON remote-address=\
+    10.25.42.209 service=pppoe
+##################################################################
+
