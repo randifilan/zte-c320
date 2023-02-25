@@ -1,0 +1,147 @@
+1.  Show Not Register ONU
+
+show gpon onu uncfg
+OnuIndex                 Sn                  State
+---------------------------------------------------------------------
+gpon-onu_1/2/2:1         ZTEGC11F4854        unknown
+
+2.  Register ONU with SN Methode
+
+configure terminal
+interface gpon-olt_1/2/2
+onu 17 type F670L sn ZTEGC11F4854     # .[Successful]
+
+3.  Show Running Config in Register ONU
+
+show run interface gpon-onu_1/2/2:17
+Building configuration...
+interface gpon-onu_1/2/2:17
+  tcont 1 name PPPoE profile dba_inet
+  tcont 2 name CCTV profile dba_cctv
+  gemport 1 name INTERNET tcont 1
+  gemport 2 name CCTV tcont 2
+  service-port 1 vport 1 user-vlan 1542 vlan 2542 
+  service-port 2 vport 2 user-vlan 1546 vlan 2546 
+!
+end
+
+4.  Show Status ONT
+
+#show All GPON state
+show gpon onu state 
+OnuIndex   Admin State  OMCC State  Phase State  Channel    
+--------------------------------------------------------------
+1/2/1:1     enable       disable     DyingGasp    1(GPON)
+1/2/1:2     enable       enable      working      1(GPON)
+.......
+1/2/2:1     enable       enable      working      1(GPON)
+1/2/2:2     enable       enable      working      1(GPON)
+1/2/2:17    enable       enable      working      1(GPON)
+.......
+1/2/3:1     enable       disable     DyingGasp    1(GPON)
+1/2/3:2     enable       enable      working      1(GPON)
+.......
+ONU Number: 27/38 
+
+#show All GPON state in PON1 (gpon-olt_1/2/1)
+show gpon onu state gpon-olt_1/2/1
+OnuIndex   Admin State  OMCC State  Phase State  Channel    
+--------------------------------------------------------------
+1/2/1:1     enable       disable     DyingGasp    1(GPON)
+1/2/1:2     enable       enable      working      1(GPON)
+.......
+ONU Number: 9/13       
+
+#show spesific GPON state in PON1 (gpon-olt_1/2/1 indeks 17)
+show gpon onu state gpon-olt_1/2/2 17                                                                      
+OnuIndex   Admin State  OMCC State  Phase State  Channel    
+--------------------------------------------------------------
+1/2/2:17    enable       enable      working      1(GPON)
+ONU Number: 1/1        
+
+5.  Show Receive PON Power in OLT
+
+show pon power attenuation gpon-onu_1/2/2:17
+           OLT                  ONU              Attenuation
+--------------------------------------------------------------------------
+ up      Rx :-4.000(dbm)       Tx:2.509(dbm)        6.509(dB)      
+ 
+ down    Tx :6.449(dbm)        Rx:-1.838(dbm)       8.287(dB)
+
+6.  Check ONU Detail Info & History
+
+show gpon onu detail-info gpon-onu_1/2/2:17
+
+ONU interface:         gpon-onu_1/2/2:17
+  Name:                ONU-2:17
+  Type:                F670L
+  State:               ready
+  Configured channel:  auto
+  Current channel:     1(GPON)
+  Admin state:         enable
+  Phase state:         working
+  Config state:        success
+  Authentication mode: sn
+  SN Bind:             enable with SN check
+  Serial number:       ZTEGC11F4854
+  Password:            
+  Description:         ONU-2:17
+  Vport mode:          gemport
+  DBA Mode:            Hybrid
+  ONU Status:          enable
+  OMCI BW Profile:     
+  Line Profile:        N/A
+  Service Profile:     N/A
+  ONU Distance:        12m
+  Online Duration:     2h 54m 20s
+  FEC:                 none
+  FEC actual mode:     N/A
+  1PPS+ToD:            disable
+  Auto replace:        disable 
+  Multicast encryption:disable
+  Multicast encryption current state:N/A
+------------------------------------------
+       Authpass Time          OfflineTime             Cause
+   1   2023-02-20 08:33:30    0000-00-00 00:00:00              
+   2   0000-00-00 00:00:00    0000-00-00 00:00:00              
+
+7.  Show Device Mac-address connected to ONT
+
+show mac gpon onu gpon-onu_1/2/2:17
+Total mac address : 2
+
+Mac address      Vlan  Type      Port                     Vc                                 
+-------------------------------------------------------------------------------
+2cc8.1bca.xxxx   2546  Dynamic   gpon-onu_1/2/2:17        vport 2  
+d476.ea44.xxxx   2542  Dynamic   gpon-onu_1/2/2:17        vport 1
+
+8.  Show GPON ONU Model
+
+show gpon remote-onu model gpon-onu_1/2/2:17
+Equipment ID:              F670LV1.1.01 
+Model:                     F670LV1.1.01
+
+9.  Show ONT Version
+
+show gpon remote-onu equip gpon-onu_1/2/2:17
+Vendor ID:                 ZTEG 
+Version:                   V1.1.01 
+SN:                        ZTEGC11F4854 
+Admin status:              unlock 
+Battery monitor:           false 
+Security mode:             aes 
+Product code:              0 
+Total priority queue num:  64 
+Total traffic schedule num:8 
+Traffic management option: priority-rate-controlled 
+Operate status:            enable 
+Equipment ID:              F670LV1.1.01 
+OMCC version:              a2 
+Security capability:       aes
+Model:                     F670LV1.1.01
+Survival time:             N/A
+Total GEM port num:        256
+System uptime:             0
+Region code:               N/A
+Product SN:                N/A
+Chip info:                 0
