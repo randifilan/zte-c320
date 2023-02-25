@@ -1,9 +1,9 @@
 Configure Trunk in Port ZTE F670L 
 ##################################################################
-#show run interface gpon-olt_1/2/2
-  onu 17 type F670L sn ZTEGC0EG4854
+show run interface gpon-olt_1/2/2
+  onu 17 type F670L sn ZTEGC11F4854
 
-#show run | begin interface gpon-onu_1/2/2:17
+show run | begin interface gpon-onu_1/2/2:17
 interface gpon-onu_1/2/2:17
   tcont 1 name T1 profile dba_inet
   gemport 1 name G1 tcont 1
@@ -12,7 +12,7 @@ interface gpon-onu_1/2/2:17
   service-port 3 vport 1 user-vlan 2545 vlan 2545
   service-port 4 vport 1 user-vlan 2546 vlan 2546
 
-#show run | begin pon-onu-mng gpon-onu_1/2/2:17
+show run | begin pon-onu-mng gpon-onu_1/2/2:17
 pon-onu-mng gpon-onu_1/2/2:17
   service IPTV gemport 1 vlan 2543
   service PABX gemport 1 vlan 2544
@@ -22,5 +22,4 @@ pon-onu-mng gpon-onu_1/2/2:17
   vlan port eth_0/2 mode hybrid def-vlan 2544
   vlan port eth_0/1 vlan 2544-2546
   vlan port eth_0/2 vlan 2543,2545-2546
-  ##################################################################
-
+##################################################################
