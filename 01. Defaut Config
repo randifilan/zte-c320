@@ -1,0 +1,41 @@
+- Connect MikroTik to Interface 10/100 in OLT
+- Set IP 136.1.1.200/24 in Mikrotik then ping to 136.1.1.100 (OLT)
+- Telnet to 136.1.1.100 (via MikroTik di Tools > Telnet)
+
+
+Enable plug-and-play of the OLT boards and add the chassis type
+##################################################################
+conf t
+set-pnp enable
+add-rack rackno 1 racktype C320Rack
+add-shelf rackno 1 shelfno 1 shelftype C320_SHELF
+add-card rackno 1 shelfno 1 slotno 2 GTGH (i used GTGH)
+add-card slotno 3 PRAM (if used PRAM)
+add-subcard rackno 1 shelfno 1 slotno 4 subcardno 1 UCDC/3
+##################################################################
+
+Configure a new management IP address on the (out-of-band) mng1 interface:
+##################################################################
+conf t
+interface mng1
+ip address 10.19.4.2 255.255.255.252
+exit
+line telnet idle-timeout 15 (15 menit default)
+end
+write
+##################################################################
+
+Configure IP and VLAN via Uplink Port (i used gei_1/4/3)
+##################################################################
+conf t
+vlan 2543 (VLAN ID for Management)    #Please config this VLAN in Router, and Switch if OLT not direcly connected to Router
+exit
+interface vlan2543
+ip address 10.25.43.3 255.255.255.0   #10.25.43.1 as Gateway in Router
+exit
+ip route 0.0.0.0 0.0.0.0 10.25.43.3   #uplink via VLAN 2543
+line telnet idle-timeout 15           #15 menit default
+ip route 0.0.0.0 0.0.0.0 136.1.1.1    #ke IP MGNT
+end
+write
+##################################################################
