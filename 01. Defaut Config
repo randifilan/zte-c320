@@ -22,7 +22,6 @@ ip address 10.19.4.2 255.255.255.252
 exit
 line telnet idle-timeout 15 (15 menit default)
 end
-write
 ##################################################################
 
 Configure IP and VLAN via Uplink Port (i used gei_1/4/3)
