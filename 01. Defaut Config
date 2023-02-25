@@ -37,4 +37,15 @@ end
 write
 ##################################################################
 
+TAG MGNT VLAN to Uplink Port
+##################################################################
+configure terminal
+interface gei_1/4/3 (choose other interface if different)
+  no shutdown
+  hybrid-attribute copper
+  switchport mode hybrid
+  switchport vlan 2541 tag
+!
+end
+##################################################################
 
