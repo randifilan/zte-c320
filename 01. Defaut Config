@@ -27,14 +27,12 @@ end
 Configure IP and VLAN via Uplink Port (i used gei_1/4/3)
 ##################################################################
 conf t
-vlan 2543 (VLAN ID for Management)    #Please config this VLAN in Router, and Switch if OLT not direcly connected to Router
+vlan 2541 (VLAN ID for Management)    #Please config this VLAN in Router, and Switch if OLT not direcly connected to Router
 exit
-interface vlan2543
-ip address 10.25.43.3 255.255.255.0   #10.25.43.1 as Gateway in Router
+interface vlan2541
+ip address 10.25.41.3 255.255.255.0   #10.25.41.1 as Gateway in Router
 exit
-ip route 0.0.0.0 0.0.0.0 10.25.43.3   #uplink via VLAN 2543
-line telnet idle-timeout 15           #15 menit default
-ip route 0.0.0.0 0.0.0.0 136.1.1.1    #ke IP MGNT
+ip route 0.0.0.0 0.0.0.0 10.25.41.3   #uplink via VLAN 2541
 end
 write
 ##################################################################
