@@ -1,0 +1,52 @@
+Configure GPON Profile Tcont
+##################################################################
+configure t
+gpon     
+  profile tcont dba_wlan type 4 maximum 32768
+  profile tcont dba_mgnt type 1 fixed 1024
+  profile tcont dba_voip type 1 fixed 20480
+  profile tcont dba_iptv type 3 assured 10240 maximum 32768
+  profile tcont dba_inet type 4 maximum 32768
+  profile tcont dba_cctv type 2 assured 32768
+!   
+##################################################################
+
+Configure GPON Profile Tcont
+##################################################################
+configure t
+gpon     
+  onu profile vlan PPPoE tag-mode tag cvlan 2542 pri 7
+  #configure profile vlan as much as you need.
+##################################################################
+
+Configure GPON Profile Tcont
+##################################################################
+configure t
+pon      
+  onu-type F660 gpon description 1G,3ETH,2POTS,WIFI
+  onu-type F660 gpon max-tcont 40
+  onu-type F660 gpon max-flow-perswitch 200
+  onu-type F660 gpon max-iphost 5
+  onu-type-if F660 eth_0/1
+  onu-type-if F660 eth_0/2
+  onu-type-if F660 eth_0/3
+  onu-type-if F660 eth_0/4
+  onu-type-if F660 pots_0/1
+  onu-type-if F660 pots_0/2
+  onu-type-if F660 wifi_0/1
+  onu-type-if F660 wifi_0/2
+  onu-type-if F660 wifi_0/3
+  onu-type-if F660 wifi_0/4
+  onu-type F670L gpon description 4G,1POTS,WIFI
+  onu-type F670L gpon max-tcont 40
+  onu-type F670L gpon max-flow-perswitch 200
+  onu-type F670L gpon max-iphost 5
+  onu-type-if F670L eth_0/1
+  onu-type-if F670L eth_0/2
+  onu-type-if F670L eth_0/3
+  onu-type-if F670L eth_0/4
+  onu-type-if F670L pots_0/1
+  onu-type-if F670L wifi_0/1
+  onu-type-if F670L wifi_0/2
+  uncfg-onu-display-info model version mac sn pw vendorid
+##################################################################
