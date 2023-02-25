@@ -145,3 +145,123 @@ System uptime:             0
 Region code:               N/A
 Product SN:                N/A
 Chip info:                 0
+
+10. Check Port (LAN/Wifi) Status in ONT
+
+show gpon remote-onu interface eth gpon-onu_1/2/2:17
+
+Interface      : eth_0/1
+Speed status   : full-1000
+Operate status : enable
+Admin status   : unlock
+ARC            : 0  
+ARC interval   : 0
+Expect type    : 0
+Speed config   : auto
+Ethernet loop  : disable
+Max frame      : 1632
+Pause time     : 0
+Wiring         : dce
+Bridge or IP   : either
+PPPoE filter   : disable
+Power control  : disable
+Status changes : 2
+
+Interface      : eth_0/2
+Speed status   : full-1000
+Operate status : enable
+Admin status   : unlock
+ARC            : 0  
+ARC interval   : 0
+Expect type    : 0
+Speed config   : auto
+Ethernet loop  : disable
+Max frame      : 1632
+Pause time     : 0
+Wiring         : dce
+Bridge or IP   : either
+PPPoE filter   : disable
+Power control  : disable
+Status changes : 2
+
+
+show gpon remote-onu interface wifi gpon-onu_1/2/2:17                                                      
+Interface:          wifi_0/1
+Admin status:       unlock
+Operate status:     enable
+Tx rates:           0,0,0,0,0,0,0,0(kbit/s)
+Rx rates:           0,0,0,0,0,0,0,0(kbit/s)
+Tx power levels:    0,0,0,0,0,0,0,0(mW)
+ARC:                0
+ARC interval:       0(mins)
+
+Interface:          wifi_0/2
+Admin status:       unlock
+Operate status:     disable
+Tx rates:           0,0,0,0,0,0,0,0(kbit/s)
+Rx rates:           0,0,0,0,0,0,0,0(kbit/s)
+Tx power levels:    0,0,0,0,0,0,0,0(mW)
+ARC:                0
+ARC interval:       0(mins)
+
+11. Restart ONT
+
+configure terminal 
+%Info 20272: Enter configuration commands, one per line. End with CTRL/Z.
+pon-onu-mng gpon-onu_1/2/2:17
+reboot
+Confirm to reboot? [yes/no]:yes
+
+12. Shutdown/Enable Port in ONT
+
+configure terminal 
+%Info 20272: Enter configuration commands, one per line. End with CTRL/Z.
+pon-onu-mng gpon-onu_1/2/2:17
+interface eth eth_0/3 state lock    >>> Shutdown
+interface eth eth_0/3 state unlock  >>> Enable Port
+
+13. Chek OLT UPTIME
+
+show system-group 
+System Description: C320 Version V2.1.0 Software, Copyright (c) by ZTE Corporation Compiled
+System ObjectId: .1.3.6.1.4.1.3902.1082.1001.320.2.1
+Started before: 0 days, 12 hours, 26 minutes
+Contact with: +6282384559167
+System name:  OLT-Hostname
+Location: OLT-Location
+
+14. Show Card OLT
+
+show card
+Rack Shelf Slot CfgType RealType Port  HardVer SoftVer         Status
+-------------------------------------------------------------------------------
+1    1     2    GTGH    GTGHG    16    V1.0.0  V2.1.0          INSERVICE
+1    1     3    SMXA             3                             OFFLINE
+1    1     4    SMXA    SMXA     3     V1.0.0  V2.1.0          INSERVICE
+
+
+14. Show GPON ONU ny SN 
+
+show gpon onu by SN ZTEGC11F4854
+Search result          
+-----------------
+gpon-onu_1/2/2:17
+
+15. Check IP Address in ONT
+
+show gpon remote-onu ip-host gpon-onu_1/2/2:17
+Host ID:            1
+Host name:          omci_ipv4_pppoe_1
+MAC address:        d476.ea44.xxxx
+Current IP address: 10.25.42.209
+Current mask:       255.255.255.255
+Current gateway:    10.25.42.1
+Current primary DNS:103.xx.xxx.2x
+Current second DNS: 103.xx.xxx.2x
+
+16. Reset Factory ONU 
+
+configure terminal 
+%Info 20272: Enter configuration commands, one per line. End with CTRL/Z.
+pon-onu-mng gpon-onu_1/2/2:17
+restore factory
