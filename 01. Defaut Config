@@ -14,7 +14,7 @@ add-card slotno 3 PRAM (if used PRAM)
 add-subcard rackno 1 shelfno 1 slotno 4 subcardno 1 UCDC/3
 ##################################################################
 
-Configure a new management IP address on the (out-of-band) mng1 interface:
+Configure a new management IP address on the mng1 (out-of-band):
 ##################################################################
 conf t
 interface mng1
