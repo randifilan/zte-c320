@@ -1,3 +1,5 @@
+Configure GPON Profile Tcont
+##################################################################
 configure t
 gpon     
   profile tcont dba_wlan type 4 maximum 32768
@@ -7,3 +9,4 @@ gpon
   profile tcont dba_inet type 4 maximum 32768
   profile tcont dba_cctv type 2 assured 32768
 !        
+##################################################################
