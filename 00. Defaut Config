@@ -18,21 +18,21 @@ Configure a new management IP address on the mng1 (out-of-band):
 ##################################################################
 conf t
 interface mng1
-ip address 10.19.4.2 255.255.255.252
+ip address 10.29.4.2 255.255.255.252    #Default IP 136.1.1.100, change as you need.
 exit
-line telnet idle-timeout 15 (15 menit default)
+line telnet idle-timeout 15             #(15 menit default)
 end
 ##################################################################
 
 Configure IP and VLAN via Uplink Port (i used gei_1/4/3)
 ##################################################################
 conf t
-vlan 2541 (VLAN ID for Management)    #Please config this VLAN in Router, and Switch if OLT not direcly connected to Router
+vlan 2541 (VLAN ID for Management)    #Please config this VLAN in Router, and pass this vlan throught switch
 exit
-interface vlan2541
+interface vlan2541                    #interface for Management VLAN
 ip address 10.25.41.3 255.255.255.0   #10.25.41.1 as Gateway in Router
 exit
-ip route 0.0.0.0 0.0.0.0 10.25.41.3   #uplink via VLAN 2541
+ip route 0.0.0.0 0.0.0.0 10.25.41.1   #uplink via VLAN 2541
 end
 write
 ##################################################################
@@ -40,11 +40,11 @@ write
 TAG MGNT VLAN to Uplink Port
 ##################################################################
 configure terminal
-interface gei_1/4/3 (choose other interface if different)
+interface gei_1/4/3                   #(choose other interface if different)
   no shutdown
   hybrid-attribute copper
   switchport mode hybrid
-  switchport vlan 2541 tag
+  switchport vlan 2541 tag            #Tag VLAN 2541
 !
 end
 ##################################################################
