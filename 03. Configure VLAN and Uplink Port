@@ -1,3 +1,7 @@
+VLAN used in this Config  : 2541-2547 (use at your own)
+VLAN Uplink Interface     : interface gei_1/4/3  (use at your own)
+
+
 Configure VLAN thats use in service like PPPoE, CCTV, IPTV
 ##################################################################
 configure terminal
@@ -21,19 +25,18 @@ vlan 2547
 !
 ##################################################################
 
-TAG VLAN to Uplink Port
+TAG VLAN to Uplink Port interface gei_1/4/3
 ##################################################################
 configure terminal
-interface gei_1/4/3 (choose other interface if different)
+interface gei_1/4/3
   no shutdown
   hybrid-attribute copper
   switchport mode hybrid
   switchport vlan 2541-2547 tag
-  igmp version v2
-  igmp fast-leave enable
+  igmp version v2           #if you need VLAN for IPTV Multicast
+  igmp fast-leave enable    #if you need VLAN for IPTV Multicast
   port-protect disable
   uplink-isolate disable
 !
 end
 ##################################################################
-
