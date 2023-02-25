@@ -1,0 +1,9 @@
+configure t
+gpon     
+  profile tcont dba_wlan type 4 maximum 32768
+  profile tcont dba_mgnt type 1 fixed 1024
+  profile tcont dba_voip type 1 fixed 20480
+  profile tcont dba_iptv type 3 assured 10240 maximum 32768
+  profile tcont dba_inet type 4 maximum 32768
+  profile tcont dba_cctv type 2 assured 32768
+!        
