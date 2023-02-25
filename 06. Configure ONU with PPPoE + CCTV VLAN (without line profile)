@@ -1,7 +1,8 @@
 Goals : 
-- With this step, you configure the ONU to connect using PPPoE, so user can connect to internet.
-- Use port1 in ONT to pass VLAN traffik with the spesific VLAN ID
-- i use VLAN 2546 for CCTV
+-   With this step, you configure the ONU to connect using PPPoE, so user can connect to internet.
+-   Use port1 in ONT to pass VLAN traffik with the spesific VLAN ID
+-   i use VLAN 2546 for CCTV
+-   you can use for other service Like IPTV, PABX and other service with VLAN.
 
 
 Show UNCFG ONU
@@ -54,6 +55,7 @@ export
 #
 # model = CCR1036-12G-4S
 # serial number = XXXXXXXXXX
+
 /ppp secret
 add name=testingpppoe password=pppoetesting profile=GPON remote-address=\
     10.25.42.209 service=pppoe
