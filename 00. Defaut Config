@@ -11,7 +11,7 @@ add-rack rackno 1 racktype C320Rack
 add-shelf rackno 1 shelfno 1 shelftype C320_SHELF
 add-card rackno 1 shelfno 1 slotno 2 GTGH (i used GTGH)
 add-card rackno 1 shelfno 1 slotno 3 PRAM (if used PRAM)
-add-subcard rackno 1 shelfno 1 slotno 4 subcardno 1 UCDC/3
+add-subcard rackno 1 shelfno 1 slotno 4 subcardno 1 UCDC/1
 ##################################################################
 
 Configure a new management IP address on the mng1 (out-of-band):
