@@ -1,6 +1,7 @@
 Goal : in case of configure ONU is being failure or whatever, you can change the register ONU with different ONU.
 
-in this case, i have configure gpon-onu_1/2/2:17 with ONU ZTEGC11F4854. I the problem exist so i change with different ONT ZTEGC12F4854.
+in this case, i have configure gpon-onu_1/2/2:17 with ONU ZTEGC11F4854. 
+If the problem exist so i change with different ONT ZTEGC12F4854.
 
 ##################################################################
 configure terminal 
