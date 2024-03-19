@@ -1,18 +1,19 @@
 1.  Show Not Register ONU in OLT 
-
+```
 show gpon onu uncfg
 OnuIndex                 Sn                  State
 ---------------------------------------------------------------------
 gpon-onu_1/2/2:1         ZTEGC11F4854        unknown
+```
 
 2.  Register ONU with SN Methode
-
+```
 configure terminal
 interface gpon-olt_1/2/2
 onu 17 type F670L sn ZTEGC11F4854     # .[Successful]
-
+```
 3.  Show Running Config of Register ONU
-
+```
 show run interface gpon-onu_1/2/2:17
 Building configuration...
 interface gpon-onu_1/2/2:17
@@ -24,9 +25,9 @@ interface gpon-onu_1/2/2:17
   service-port 2 vport 2 user-vlan 1546 vlan 2546 
 !
 end
-
+```
 4.  Show ONT Status
-
+```
 #show All ONT state (in ALL GPON Interface)
 show gpon onu state 
 OnuIndex   Admin State  OMCC State  Phase State  Channel    
@@ -42,8 +43,9 @@ OnuIndex   Admin State  OMCC State  Phase State  Channel
 1/2/3:2     enable       enable      working      1(GPON)
 .......
 ONU Number: 27/38 
-
+```
 #show All ONT state in PON1 (gpon-olt_1/2/1)
+```
 show gpon onu state gpon-olt_1/2/1
 OnuIndex   Admin State  OMCC State  Phase State  Channel    
 --------------------------------------------------------------
@@ -51,27 +53,29 @@ OnuIndex   Admin State  OMCC State  Phase State  Channel
 1/2/1:2     enable       enable      working      1(GPON)
 .......
 ONU Number: 9/13       
+```
 
 #show spesific GPON state in PON1 (gpon-olt_1/2/1 index 17)
+```
 show gpon onu state gpon-olt_1/2/2 17                                                                      
 OnuIndex   Admin State  OMCC State  Phase State  Channel    
 --------------------------------------------------------------
 1/2/2:17    enable       enable      working      1(GPON)
 ONU Number: 1/1        
+```
 
 5.  Show Receive Power in OLT/ONT
-
+```
 show pon power attenuation gpon-onu_1/2/2:17
            OLT                  ONU              Attenuation
 --------------------------------------------------------------------------
  up      Rx :-4.000(dbm)       Tx:2.509(dbm)        6.509(dB)      
- 
  down    Tx :6.449(dbm)        Rx:-1.838(dbm)       8.287(dB)
+```
 
 6.  Check ONU Detail Info & History
-
+```
 show gpon onu detail-info gpon-onu_1/2/2:17
-
 ONU interface:         gpon-onu_1/2/2:17
   Name:                ONU-2:17
   Type:                F670L
@@ -104,25 +108,27 @@ ONU interface:         gpon-onu_1/2/2:17
        Authpass Time          OfflineTime             Cause
    1   2023-02-20 08:33:30    0000-00-00 00:00:00              
    2   0000-00-00 00:00:00    0000-00-00 00:00:00              
+```
 
 7.  Show Device Mac-address connected to ONT
-
+```
 show mac gpon onu gpon-onu_1/2/2:17
 Total mac address : 2
-
 Mac address      Vlan  Type      Port                     Vc                                 
 -------------------------------------------------------------------------------
 2cc8.1bca.xxxx   2546  Dynamic   gpon-onu_1/2/2:17        vport 2  
 d476.ea44.xxxx   2542  Dynamic   gpon-onu_1/2/2:17        vport 1
+```
 
 8.  Show GPON ONU Model
-
+```
 show gpon remote-onu model gpon-onu_1/2/2:17
 Equipment ID:              F670LV1.1.01 
 Model:                     F670LV1.1.01
+```
 
 9.  Show ONT Version
-
+```
 show gpon remote-onu equip gpon-onu_1/2/2:17
 Vendor ID:                 ZTEG 
 Version:                   V1.1.01 
@@ -145,11 +151,11 @@ System uptime:             0
 Region code:               N/A
 Product SN:                N/A
 Chip info:                 0
+```
 
 10. Check Port (LAN/Wifi) Status in ONT
-
+```
 show gpon remote-onu interface eth gpon-onu_1/2/2:17
-
 Interface      : eth_0/1
 Speed status   : full-1000
 Operate status : enable
@@ -184,7 +190,6 @@ PPPoE filter   : disable
 Power control  : disable
 Status changes : 2
 
-
 show gpon remote-onu interface wifi gpon-onu_1/2/2:17                                                      
 Interface:          wifi_0/1
 Admin status:       unlock
@@ -203,25 +208,28 @@ Rx rates:           0,0,0,0,0,0,0,0(kbit/s)
 Tx power levels:    0,0,0,0,0,0,0,0(mW)
 ARC:                0
 ARC interval:       0(mins)
+```
 
 11. Restart ONT
-
+```
 configure terminal 
 %Info 20272: Enter configuration commands, one per line. End with CTRL/Z.
 pon-onu-mng gpon-onu_1/2/2:17
 reboot
 Confirm to reboot? [yes/no]:yes
+```
 
 12. Shutdown/Enable Port in ONT
-
+```
 configure terminal 
 %Info 20272: Enter configuration commands, one per line. End with CTRL/Z.
 pon-onu-mng gpon-onu_1/2/2:17
 interface eth eth_0/3 state lock    >>> Shutdown
 interface eth eth_0/3 state unlock  >>> Enable Port
+```
 
 13. Chek OLT UPTIME
-
+```
 show system-group 
 System Description: C320 Version V2.1.0 Software, Copyright (c) by ZTE Corporation Compiled
 System ObjectId: .1.3.6.1.4.1.3902.1082.1001.320.2.1
@@ -229,26 +237,28 @@ Started before: 0 days, 12 hours, 26 minutes
 Contact with: +6282384559167
 System name:  OLT-Hostname
 Location: OLT-Location
+```
 
 14. Show Card OLT
-
+```
 show card
 Rack Shelf Slot CfgType RealType Port  HardVer SoftVer         Status
 -------------------------------------------------------------------------------
 1    1     2    GTGH    GTGHG    16    V1.0.0  V2.1.0          INSERVICE
 1    1     3    SMXA             3                             OFFLINE
 1    1     4    SMXA    SMXA     3     V1.0.0  V2.1.0          INSERVICE
-
+```
 
 14. Show GPON ONU ny SN 
-
+```
 show gpon onu by SN ZTEGC11F4854
 Search result          
 -----------------
 gpon-onu_1/2/2:17
+```
 
 15. Check IP Address in ONT
-
+```
 show gpon remote-onu ip-host gpon-onu_1/2/2:17
 Host ID:            1
 Host name:          omci_ipv4_pppoe_1
@@ -258,29 +268,32 @@ Current mask:       255.255.255.255
 Current gateway:    10.25.42.1
 Current primary DNS:103.xx.xxx.2x
 Current second DNS: 103.xx.xxx.2x
+```
 
 16. Reset Factory ONU 
-
+```
 configure terminal 
 %Info 20272: Enter configuration commands, one per line. End with CTRL/Z.
 pon-onu-mng gpon-onu_1/2/2:17
 restore factory
+```
 
 17. Restart ONU 
-
+```
 configure terminal 
 %Info 20272: Enter configuration commands, one per line. End with CTRL/Z.
 pon-onu-mng gpon-onu_1/2/2:17
 reboot
+```
 
 18. Show VLAN and summary of Configure VLAN in OLT
-
+```
 show vlan summary 
 All created vlan num: 8   
 Details are following:
     1,2541-2547 
 
-
+```
 show vlan 2542
 vlanid          :2542
 name            :GPON
@@ -297,3 +310,4 @@ port(tagged):
   gpon-onu_1/2/2:16-17:1,3:1-6:1
   gpon-onu_1/2/3:7-12:1
   gei_1/4/3  
+```
